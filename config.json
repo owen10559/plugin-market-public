@@ -1,0 +1,19 @@
+{
+    "mysql":{
+        "host":"mysql",
+        "port":"3306",
+        "username":"plugin_market",
+        "password":"密码"
+    },
+    "redis":{
+        "host":"redis",
+        "port":"6379"
+    },
+    "smtp":{
+        "host":"smtp.exmail.qq.com",
+        "port":"465",
+        "account":"用户邮箱",
+        "password":"QQ邮箱申请的",
+        "name":"萌尘开发组"
+    }
+}

@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+
+  main:
+    image: golang
+    volumes:
+      - ./data/plugins:/root/main/data/plugins
+      - ./main:/root/main
+      - ./config.json:/root/main/config.json
+    ports:
+      - 10559:10559
+    working_dir: /root/main
+    # tty: true
+    command: sh run.sh
+    depends_on:
+      - mysql
+      - redis
+
+  mysql:
+    image: mysql:latest
+    volumes:
+      - ./mysql_init:/docker-entrypoint-initdb.d
+      - ./data/mysql:/root/data
+    working_dir: /root/data
+    ports:
+      # 测试用
+      - 10558:3306
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - TZ=Asia/Shanghai
+
+  redis:
+    image: redis
+    volumes:
+      - ./data/redis:/data
